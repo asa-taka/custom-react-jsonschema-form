@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import Form from './Form'
 import './App.css';
+import complement from './utils/complement'
 
 const userSchema = {
   title: 'User',
-  type: "object",
   description: 'User profile',
   properties: {
-    name: { type: "string" },
-    pass: {
-      type: "string",
-      description: 'Your awesom password!'
-    },
-    age: { type: 'integer' },
+    name: {},
+    pass: {　description: 'Your awesom password!'　},
+    age: { type: 'number' },
     friends: {
       title: 'Friends',
-      type: 'array',
       items: {
         title: 'Friend',
         $ref: '#/definitions/user',
@@ -29,11 +25,9 @@ const schema = {
     user: userSchema,
   },
   title: "Todo",
-  type: "object",
   required: ["title"],
   properties: {
     title: {
-      type: "string",
       title: "Title",
       default: "A new task"
     },
@@ -45,11 +39,9 @@ const schema = {
     tags: {
       title: 'Tags',
       description: 'Tags for search',
-      type: 'array',
       items: { title: 'Tag', type: 'string' }
     },
     party: {
-      type: 'string',
       enum: ['CAT', 'DOG', 'OCTCAT'],
       default: 'CAT',
     },
@@ -59,11 +51,12 @@ const schema = {
     },
     array: {
       title: 'Extra Users',
-      type: "array",
       items: { $ref: '#/definitions/user' },
     },
   }
 }
+
+console.log(complement(schema))
 
 class App extends Component {
   render() {

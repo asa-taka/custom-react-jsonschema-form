@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from 'react-jsonschema-form'
 import './Form.css'
+import complement from './utils/complement'
 import { withProps } from 'recompose'
 
 function FieldTemplate(props) {
@@ -67,9 +68,10 @@ const onSubmit = event => {
   return console.warn('Form.onSubmit is not defined', event.formData)
 }
 
-export default withProps({
+export default withProps(({ schema }) => ({
+  schema: complement(schema),
   FieldTemplate,
   ArrayFieldTemplate,
   ObjectFieldTemplate,
   onSubmit,
-})(Form)
+}))(Form)
