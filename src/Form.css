@@ -4,19 +4,31 @@
   margin-bottom: 12px;
 }
 
+.form-array-title {
+  line-height: 1.5;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 12px;
+}
+
 fieldset {
   width: 100%;
 }
 
-.form-group {
+.field-main {
   display: flex;
   align-items: center;
 }
-.form-group > * {
+.field-main > * {
   flex-grow: 1;
 }
-.form-group > label {
+.field-main > label {
   width: 30%;
+  margin-right: 12px;
+}
+
+.field-array > .field-main,
+.field-object > .field-main {
+  display: block;
 }
 
 button.form-add-item {

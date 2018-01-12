@@ -4,21 +4,25 @@ import './Form.css'
 import { withProps } from 'recompose'
 
 function FieldTemplate(props) {
-  const {id, classNames, label, help, required, description, errors, children} = props;
-  console.log(classNames)
+  const {
+    id, classNames, label, help, required, description, errors, children,
+  } = props;
+  const type = props.schema.type
   return (
     <div className={classNames}>
-      <label htmlFor={id}>{label}{required ? "*" : null}</label>
-      {description}
-      {children}
-      {errors}
-      {help}
+      <div className="field-main">
+        { type !== 'object' && type !== 'array' &&
+          <label htmlFor={id}>{label}{required ? "*" : null}</label>
+        }
+        {children}
+      </div>
+      <div className="field-help">
+        {description}
+        {errors}
+        {help}
+      </div>
     </div>
   );
-}
-
-function ArrayItemFieldTemplate(props) {
-
 }
 
 function ArrayFieldTemplate(props) {
@@ -26,7 +30,7 @@ function ArrayFieldTemplate(props) {
   const itemName = schema.items.title
   return (
     <div className="array">
-      <h3>{title}</h3>
+      <h3 className="form-array-title">{title}</h3>
       {props.items.map(elm =>
         <div className="array-item">
           {elm.children}
