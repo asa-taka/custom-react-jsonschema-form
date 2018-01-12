@@ -1,0 +1,77 @@
+.form-object-title {
+  font-weight: bold;
+  color: #999;
+  margin-bottom: 12px;
+}
+
+fieldset {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+}
+.form-group > * {
+  flex-grow: 1;
+}
+.form-group > label {
+  width: 30%;
+}
+
+button.form-add-item {
+  width: 100%;
+  background: #f9f9f9;
+  border: 2px dashed #eee;
+  color: #999;
+  border-radius: 4px;
+  transition: border .2s, color .2s;
+}
+button.form-add-item:hover {
+  border-color: #ddd;
+  color: #666;
+}
+button.form-rm-item {
+  height: 34px;
+  width: 34px;
+  margin-left: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #999;
+  background: #f9f9f9;
+}
+button.form-rm-item:hover {
+  background: firebrick;
+  color: #fff;
+}
+
+button {
+  transition: color .2s, background .2s;
+}
+
+.field-object + button.form-rm-item {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 0 4px 0 4px;
+}
+
+.array-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+.array-item > .field {
+  flex-grow: 1;
+}
+
+.field-object {
+  border: 1px solid #ddd;
+  padding: 12px 24px;
+  border-radius: 4px;
+}
+
+/* WORKAROUND: many empty <div> elements are in the Form! */
+div:empty {
+  display: none;
+}
