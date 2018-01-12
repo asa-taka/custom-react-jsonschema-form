@@ -29,6 +29,7 @@ const schema = {
   properties: {
     title: {
       title: "Title",
+      description: 'Something your special :)',
       default: "A new task"
     },
     done: {

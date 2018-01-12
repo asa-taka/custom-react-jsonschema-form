@@ -1,31 +1,15 @@
-.form-object-title {
-  font-weight: bold;
-  color: #999;
-  margin-bottom: 12px;
-}
-
-.form-array-title {
-  line-height: 1.5;
-  border-bottom: 2px solid #eee;
-  margin-bottom: 12px;
-}
-
-.form-desc {
-  margin-bottom: 12px;
-}
-
 fieldset {
   width: 100%;
 }
 
-.field-main {
+.field-prim {
   display: flex;
   align-items: center;
 }
-.field-main > input {
+.field-prim > .field-value {
   flex-grow: 1;
 }
-.field-main > label {
+.field-prim > label {
   width: 30%;
   margin: 0;
   margin-right: 12px;
@@ -33,11 +17,6 @@ fieldset {
 }
 
 .field-help {
-  margin-top: 12px;
-  color: #999;
-}
-
-.field-desc {
   margin: 12px 0;
   color: #999;
 }

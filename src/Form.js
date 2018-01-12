@@ -5,24 +5,48 @@ import complement from './utils/complement'
 import { withProps } from 'recompose'
 
 function FieldTemplate(props) {
-  const {
-    id, classNames, label, help, required, description, errors, children,
-  } = props;
-  const type = props.schema.type
-  const isSimpleType = type !== 'object' && type !== 'array'
+  const isComposedType = ['object', 'array'].includes(props.schema.type)
+  const Template = isComposedType ? ComposedFieldTemplate : PrimitiveFieldTemplate
+  return <Template {...props} />
+}
+
+function ComposedFieldTemplate(props) {
+  const { classNames } = props
   return (
-    <div className={classNames}>
-      <div className="field-main">
-        {isSimpleType && <label htmlFor={id}>{label}{required ? "*" : null}</label>}
-        {children}
-      </div>
-      <div className="field-help">
-        {isSimpleType && <div className="field-desc">{description}</div>}
-        {errors}
-        {help}
+    <div className={classNames + ' field-comp'}>
+      <h3>{props.label}</h3>
+      <FieldHelper {...props} />
+      {props.children}
+    </div>
+  )
+}
+
+function PrimitiveFieldTemplate(props) {
+  const { classNames } = props
+  return (
+    <div className={classNames + ' field-prim'}>
+      <label>{props.label}{props.required && "*"}</label>
+      <div className="field-value">{props.children}
+        <FieldHelper {...props} />
       </div>
     </div>
-  );
+  )
+}
+
+function FieldHelper(props) {
+  const {
+    rawDescription, description,
+    rawErrors, errors,
+    rawHelp, help
+  } = props
+  if (!rawDescription && !rawErrors && !rawHelp) return null
+  return (
+    <div className="field-help">
+      {rawDescription && description}
+      {rawErrors && errors}
+      {rawHelp && help}
+    </div>
+  )
 }
 
 function ArrayFieldTemplate(props) {
@@ -30,8 +54,6 @@ function ArrayFieldTemplate(props) {
   const itemName = schema.items.title
   return (
     <React.Fragment>
-      <h3 className="form-array-title">{title}</h3>
-      <div className="field-desc">{schema.description}</div>
       {props.items.map(elm =>
         <div className="array-item">
           {elm.children}
@@ -55,8 +77,6 @@ function ObjectFieldTemplate(props) {
   const { title, description, properties } = props
   return (
     <React.Fragment>
-      <div className="form-object-title">{title}</div>
-      {description}
       {properties.map((elm, i) =>
         <div key={i}>{elm.content}</div>
       )}
