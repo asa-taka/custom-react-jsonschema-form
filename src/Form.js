@@ -8,16 +8,15 @@ function FieldTemplate(props) {
     id, classNames, label, help, required, description, errors, children,
   } = props;
   const type = props.schema.type
+  const isSimpleType = type !== 'object' && type !== 'array'
   return (
     <div className={classNames}>
       <div className="field-main">
-        { type !== 'object' && type !== 'array' &&
-          <label htmlFor={id}>{label}{required ? "*" : null}</label>
-        }
+        {isSimpleType && <label htmlFor={id}>{label}{required ? "*" : null}</label>}
         {children}
       </div>
       <div className="field-help">
-        {description}
+        {isSimpleType && <div className="field-desc">{description}</div>}
         {errors}
         {help}
       </div>
@@ -29,8 +28,9 @@ function ArrayFieldTemplate(props) {
   const { title, items, schema } = props
   const itemName = schema.items.title
   return (
-    <div className="array">
+    <React.Fragment>
       <h3 className="form-array-title">{title}</h3>
+      <div className="field-desc">{schema.description}</div>
       {props.items.map(elm =>
         <div className="array-item">
           {elm.children}
@@ -46,20 +46,20 @@ function ArrayFieldTemplate(props) {
           + Add {itemName}
         </button>
       }
-    </div>
+    </React.Fragment>
   );
 }
 
 function ObjectFieldTemplate(props) {
   const { title, description, properties } = props
   return (
-    <div>
+    <React.Fragment>
       <div className="form-object-title">{title}</div>
       {description}
       {properties.map((elm, i) =>
         <div key={i}>{elm.content}</div>
       )}
-    </div>
+    </React.Fragment>
   );
 }
 

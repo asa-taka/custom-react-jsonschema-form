@@ -5,9 +5,13 @@ import './App.css';
 const userSchema = {
   title: 'User',
   type: "object",
+  description: 'User profile',
   properties: {
     name: { type: "string" },
-    pass: { type: "string" },
+    pass: {
+      type: "string",
+      description: 'Your awesom password!'
+    },
     age: { type: 'integer' },
     friends: {
       title: 'Friends',
@@ -40,6 +44,7 @@ const schema = {
     },
     tags: {
       title: 'Tags',
+      description: 'Tags for search',
       type: 'array',
       items: { title: 'Tag', type: 'string' }
     },
