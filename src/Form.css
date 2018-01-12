@@ -26,8 +26,10 @@ fieldset {
   flex-grow: 1;
 }
 .field-main > label {
-  width: 30%;
+  width: 30%;
+  margin: 0;
   margin-right: 12px;
+  font-weight: bold;
 }
 
 .field-help {
