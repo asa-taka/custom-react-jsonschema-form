@@ -28,6 +28,13 @@ fieldset {
   text-align: right;
 }
 
+form select {
+  height: 38px;
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
 .field-comp > * {
   margin: 12px 0;
 }
