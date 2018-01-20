@@ -15,8 +15,8 @@ function ComposedFieldTemplate(props) {
   return (
     <div className={classNames + ' field-comp'}>
       <div className="field-heading">
-      <h3>{props.label}</h3>
-      <FieldHelper {...props} />
+        <h3>{props.label}</h3>
+        <FieldHelper {...props} />
       </div>
       {props.children}
     </div>
@@ -44,9 +44,9 @@ function FieldHelper(props) {
   if (!rawDescription && !rawErrors && !rawHelp) return null
   return (
     <div className="field-help">
-      {rawDescription && description}
+      {rawDescription && <div>{rawDescription}</div>}
       {rawErrors && errors}
-      {rawHelp && help}
+      {rawHelp && rawHelp}
     </div>
   )
 }
@@ -80,7 +80,7 @@ function ObjectFieldTemplate(props) {
   return (
     <React.Fragment>
       {properties.map((elm, i) =>
-        <div key={i}>{elm.content}</div>
+        <div className="field-object-prop" key={i}>{elm.content}</div>
       )}
     </React.Fragment>
   );
