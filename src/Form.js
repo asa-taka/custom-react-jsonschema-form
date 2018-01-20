@@ -2,6 +2,7 @@ import React from 'react'
 import Form from 'react-jsonschema-form'
 import './Form.css'
 import complement from './utils/complement'
+import { Button, Icon } from 'semantic-ui-react'
 import { withProps } from 'recompose'
 
 function FieldTemplate(props) {
@@ -28,7 +29,10 @@ function PrimitiveFieldTemplate(props) {
   return (
     <div className={classNames + ' field-prim'}>
       <label>{props.label}{props.required && "*"}</label>
-      <div className="field-value">{props.children}
+      <div className="field-value">
+        <div className="ui input fluid">
+          {props.children}
+        </div>
         <FieldHelper {...props} />
       </div>
     </div>
@@ -59,17 +63,16 @@ function ArrayFieldTemplate(props) {
       {props.items.map(elm =>
         <div className="array-item">
           {elm.children}
-          <button
-            title="remove this item"
-            className="form-rm-item"
+          <Icon className="array-rm-item"
+            name="delete" circular inverted color="red"
             onClick={elm.onDropIndexClick(elm.index)}
-          >✖︎</button>
+          />
         </div>
       )}
       {props.canAdd &&
-        <button className="form-add-item" onClick={props.onAddClick}>
-          + Add {itemName}
-        </button>
+        <Button primary onClick={props.onAddClick}>
+          <Icon name="plus" /> Add {itemName}
+        </Button>
       }
     </React.Fragment>
   );

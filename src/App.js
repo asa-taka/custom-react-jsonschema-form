@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from './Form'
 import './App.css';
 import complement from './utils/complement'
+import { Button } from 'semantic-ui-react'
 
 const userSchema = {
   title: 'User',
@@ -61,16 +62,21 @@ console.log(complement(schema))
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
+    return <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <div className="container">
-          <Form schema={schema} />
+        <div className="ui container">
+          <Form schema={schema}>
+            <Button primary>
+              <i className="icon mail" />Submit
+            </Button>
+            <Button>
+              <i className="icon window close" />Cancel
+            </Button>
+          </Form>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
