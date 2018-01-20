@@ -14,8 +14,10 @@ function ComposedFieldTemplate(props) {
   const { classNames } = props
   return (
     <div className={classNames + ' field-comp'}>
+      <div className="field-heading">
       <h3>{props.label}</h3>
       <FieldHelper {...props} />
+      </div>
       {props.children}
     </div>
   )
