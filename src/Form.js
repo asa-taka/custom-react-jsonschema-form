@@ -5,9 +5,11 @@ import complement from "./utils/complement"
 import { Button, Icon } from "semantic-ui-react"
 import { withProps } from "recompose"
 
+const composedTypes = ["object", "array"]
+const distinctComposedType = type => composedTypes.includes(type)
+
 function FieldTemplate(props) {
-  const isComposedType = ["object", "array"].includes(props.schema.type)
-  const Template = isComposedType
+  const Template = distinctComposedType(props.schema.type)
     ? ComposedFieldTemplate
     : PrimitiveFieldTemplate
   return <Template {...props} />
