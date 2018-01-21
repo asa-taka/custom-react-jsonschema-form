@@ -2,8 +2,8 @@ import React from 'react'
 import Form from 'react-jsonschema-form'
 import './Form.css'
 import complement from './utils/complement'
-import { Button, Icon } from 'semantic-ui-react'
-import { withProps } from 'recompose'
+import { Button, Icon, Message } from 'semantic-ui-react'
+import { withProps, lifecycle } from 'recompose'
 
 const composedTypes = ['object', 'array']
 const distinctComposedType = type => composedTypes.includes(type)
@@ -43,13 +43,12 @@ function PrimitiveFieldTemplate(props) {
 }
 
 function FieldHelper(props) {
-  const { rawDescription, rawErrors, errors, rawHelp } = props
-  if (!rawDescription && !rawErrors && !rawHelp) return null
+  const { rawDescription, rawErrors, errors } = props
+  if (!rawDescription && !rawErrors) return null
   return (
     <div className="field-help">
       {rawDescription && <div>{rawDescription}</div>}
       {rawErrors && errors}
-      {rawHelp && rawHelp}
     </div>
   )
 }
@@ -88,6 +87,10 @@ function ObjectFieldTemplate(props) {
   )
 }
 
+function ErrorList({ errors }) {
+  return <Message negative header="Errors" list={errors.map(e => e.stack)} />
+}
+
 const onSubmit = event => {
   return console.warn('Form.onSubmit is not defined', event.formData)
 }
@@ -97,5 +100,6 @@ export default withProps(({ schema }) => ({
   FieldTemplate,
   ArrayFieldTemplate,
   ObjectFieldTemplate,
+  ErrorList,
   onSubmit
 }))(Form)
