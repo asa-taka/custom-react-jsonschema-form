@@ -8,8 +8,10 @@ import {
   Segment,
   Container,
   Menu,
-  Header
+  Header,
+  Message,
 } from 'semantic-ui-react'
+import complement from './utils/complement'
 
 import * as settings from './schemas/index'
 
@@ -21,6 +23,7 @@ const examples = Object.entries(settings).map(([key, props]) => ({
 
 const AppMenu = withRouter(({ location }) => (
   <Menu inverted pointing secondary>
+    <Menu.Item as={Link} to="/">About</Menu.Item>
     {examples.map(ex => (
       <Menu.Item
         key={ex.path}
@@ -33,21 +36,43 @@ const AppMenu = withRouter(({ location }) => (
   </Menu>
 ))
 
+const renderForm = props => (
+  (
+    <Form {...props}>
+      <Button positive>
+        <Icon name="mail" />Submit
+      </Button>
+      <Button>Cancel</Button>
+    </Form>
+  )
+)
+
+const AppAbout = () => <article>
+  <h2>Welcome to my personal practice page :)</h2>
+  <p>This is my personal project to practice to learn
+    both of react-jsonschema-form and (really cute) Semantic UI.
+    </p> 
+    <p>
+      react-jsonschema-form generate
+    </p>
+    <Message>
+      {renderForm(settings['todo'])}
+    </Message>
+    ...from JSON Schema like below
+    <pre>
+      {JSON.stringify(complement(settings['todo'].schema), null, 2)}
+    </pre>
+</article>
+
 const AppRoutes = () => (
   <Switch>
+    <Route exact path="/" component={AppAbout} />
     {examples.map(ex => (
       <Route
         exact
         key={ex.path}
         path={ex.path}
-        render={() => (
-          <Form {...ex.props}>
-            <Button positive>
-              <Icon name="mail" />Submit
-            </Button>
-            <Button>Cancel</Button>
-          </Form>
-        )}
+        render={() => renderForm(ex.props)}
       />
   ))}
  </Switch>

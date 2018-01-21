@@ -31,7 +31,7 @@ const schema = {
   definitions: {
     user: userSchema
   },
-  title: 'Todo',
+  title: 'User Profile',
   required: ['title'],
   properties: {
     title: {
