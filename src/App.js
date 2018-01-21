@@ -11,13 +11,13 @@ import {
   Header
 } from 'semantic-ui-react'
 
-import userProfile from './schemas/userProfile'
-import myFavoriteThings from './schemas/myFavoriteThings'
+import * as settings from './schemas/index'
 
-const examples = [
-  { path: '/ex1', title: 'User Profile', props: userProfile },
-  { path: '/ex2', title: 'My Favorit Things', props: myFavoriteThings },
-]
+const examples = Object.entries(settings).map(([key, props]) => ({
+  path: '/' + key,
+  title: props.schema.title,
+  props,
+}))
 
 const AppMenu = withRouter(({ location }) => (
   <Menu inverted pointing secondary>

@@ -1,5 +1,5 @@
 const favoritThings = {
-  title: "My Favorit Things",
+  title: "Favorit Things Set",
   properties: {
     title: {
       type: 'integer',
@@ -12,7 +12,7 @@ const favoritThings = {
 }
 
 const schema = {
-  title: 'My All Favorite Things',
+  title: 'My Favorite Things',
   description: "When I'm feeling sad, I simply remember my favorite things, then I don't feel so bad",
   required: ['title'],
   properties: {
