@@ -11,11 +11,12 @@ import {
   Header
 } from 'semantic-ui-react'
 
-import userProfileSchema from './schemas/userProfile'
+import userProfile from './schemas/userProfile'
+import myFavoriteThings from './schemas/myFavoriteThings'
 
 const examples = [
-  { path: '/ex1', title: 'User Profile', schema: userProfileSchema },
-  { path: '/ex2', title: '...and more', schema: { type: 'string', title: 'some-value...'} },
+  { path: '/ex1', title: 'User Profile', props: userProfile },
+  { path: '/ex2', title: 'My Favorit Things', props: myFavoriteThings },
 ]
 
 const AppMenu = withRouter(({ location }) => (
@@ -40,7 +41,7 @@ const AppRoutes = () => (
         key={ex.path}
         path={ex.path}
         render={() => (
-          <Form schema={ex.schema}>
+          <Form {...ex.props}>
             <Button positive>
               <Icon name="mail" />Submit
             </Button>

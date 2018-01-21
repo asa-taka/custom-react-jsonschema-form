@@ -4,6 +4,7 @@ import './Form.css'
 import complement from './utils/complement'
 import { Button, Icon, Message, Label } from 'semantic-ui-react'
 import { withProps } from 'recompose'
+import classNames from 'classnames'
 
 const composedTypes = ['object', 'array']
 const distinctComposedType = type => composedTypes.includes(type)
@@ -29,14 +30,20 @@ function ComposedFieldTemplate(props) {
 }
 
 function PrimitiveFieldTemplate(props) {
-  const { classNames } = props
+  const { uiSchema } = props
+  const widget = uiSchema['ui:widget']
+  const className = classNames(
+    props.classNames,
+    widget && `widget-${widget}`
+  )
+  console.log(className)
   return (
-    <div className={classNames}>
+    <div className={className}>
       <label>
         {props.label}
         {props.required && '*'}
       </label>
-      <div className="ui input fluid">{props.children}</div>
+      <div className="ui input form fluid">{props.children}</div>
       <FieldHelper {...props} />
     </div>
   )

@@ -23,15 +23,11 @@ const linkSchema = {
     type: {
       enum: ['PRIMARY', 'DANGER', 'GOOD'],
       default: ['GOOD']
-    },
-    ex1: {},
-    ex2: {},
-    ex3: {},
-    ex4: {}
+    }
   }
 }
 
-export default {
+const schema = {
   definitions: {
     user: userSchema
   },
@@ -43,20 +39,10 @@ export default {
       description: 'Something your special :)',
       default: 'A new task'
     },
-    done: {
-      type: 'boolean',
-      title: 'Done?',
-      default: false
-    },
     tags: {
       title: 'Tags',
       description: 'Tags for search',
       items: { title: 'Tag', type: 'string' }
-    },
-    links: {
-      title: 'Links',
-      description: 'Your favorite links!',
-      items: linkSchema
     },
     party: {
       enum: ['CAT', 'DOG', 'OCTCAT'],
@@ -72,3 +58,5 @@ export default {
     }
   }
 }
+
+export default { schema }

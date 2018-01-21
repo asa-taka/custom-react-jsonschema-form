@@ -19,11 +19,8 @@
   font-weight: bold;
 }
 
-.rjsf select {
+.rjsf .ui.form select {
   height: 38px;
-  padding: 0.5em;
-  border: 1px solid #ddd;
-  width: 100%;
 }
 
 .checkbox {
@@ -56,7 +53,8 @@
   min-width: 200px;
 }
 .field-object-props > .field-array,
-.field-object-props > .field-object {
+.field-object-props > .field-object,
+.field-object-props > .widget-textarea {
   flex: 1 100%;
 }
 
