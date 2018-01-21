@@ -1,6 +1,94 @@
-fieldset {
+.rjsf > .form-group {
+  padding: 0;
+  border: none;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 24px;
+}
+
+/* Adjustment for Basic Elements
+================================*/
+
+.rjsf fieldset {
   width: 100%;
 }
+
+.rjsf label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.rjsf select {
+  height: 38px;
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.checkbox {
+  line-height: 38px;
+}
+
+/* Object Field
+===============*/
+
+.field-object {
+  border: 4px solid #eee;
+  padding: 18px 24px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .field-object {
+    padding: 18px 1em;
+  }
+}
+
+.field-object-props {
+  display: flex;
+  flex-flow: wrap;
+  margin: 0 -6px;
+}
+.field-object-props > * {
+  flex: 1 100%;
+  margin: 6px;
+}
+.field-object-props > .field-prim {
+  flex: 1 auto;
+  min-width: 200px;
+}
+
+/* Array Field
+==============*/
+
+.array-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.array-item > .field {
+  flex-grow: 1;
+}
+
+.array-item > .field-prim > label {
+  display: none;
+}
+
+.ui.button.array-rm-item {
+  display: block;
+  margin-left: 8px;
+}
+
+.field-object + .ui.button.array-rm-item {
+  position: absolute;
+  right: 0;
+  margin: 0;
+}
+
+/* Accessories
+==============*/
 
 .field-heading {
   margin-bottom: 12px;
@@ -9,83 +97,25 @@ fieldset {
   margin-bottom: 0;
 }
 
-.field-prim {
-  display: flex;
-}
-.field-prim > .field-value {
-  flex-grow: 1;
-}
-.field-prim > label {
-  width: 30%;
-  margin: 0;
-  margin-right: 12px;
-  font-weight: bold;
-  line-height: 34px;
-}
-
 .field-help {
   margin-top : 4px;
   color: #999;
 }
 
-.field-array > .field-main,
-.field-object > .field-main {
-  display: block;
+ul.error-detail {
+  padding: 0;
+  margin: 0;
 }
 
-button.form-add-item {
-  width: 100%;
-  background: #f9f9f9;
-  border: 2px dashed #eee;
-  color: #999;
+ul.error-detail > li {
+  display: inline-block;
+  background: #fcc;
+  padding: 2px 12px;
   border-radius: 4px;
-  transition: border .2s, color .2s;
-}
-button.form-add-item:hover {
-  border-color: #ddd;
-  color: #666;
-}
-button.form-rm-item {
-  height: 34px;
-  width: 34px;
-  margin-left: 8px;
-  border: none;
-  border-radius: 4px;
-  color: #999;
-  background: transparent;
-}
-button.form-rm-item:hover {
-  background: firebrick;
-  color: #fff;
-}
-
-button {
-  transition: color .2s, background-color .2s;
-}
-
-.field-object + button.form-rm-item {
-  position: absolute;
-  right: 0;
-  top: 0;
-  border-radius: 0 4px 0 4px;
-}
-
-.array-item {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-}
-.array-item > .field {
-  flex-grow: 1;
-}
-
-.field-object {
-  border: 1px solid #ddd;
-  padding: 12px 24px;
-  border-radius: 4px;
+  color: firebrick;
 }
 
 /* WORKAROUND: many empty <div> elements are in the Form! */
-div:empty {
+div:empty, p:empty {
   display: none;
 }

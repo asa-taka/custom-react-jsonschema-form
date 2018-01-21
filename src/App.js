@@ -1,76 +1,38 @@
 import React, { Component } from 'react';
 import Form from './Form'
 import './App.css';
-import complement from './utils/complement'
+import { Icon, Button, Segment, Container, Menu, Header } from 'semantic-ui-react'
 
-const userSchema = {
-  title: 'User',
-  description: 'User profile',
-  properties: {
-    name: {},
-    pass: {　description: 'Your awesom password!'　},
-    age: { type: 'number' },
-    friends: {
-      title: 'Friends',
-      items: {
-        title: 'Friend',
-        $ref: '#/definitions/user',
-      },
-    }
-  }
-}
-
-const schema = {
-  definitions: {
-    user: userSchema,
-  },
-  title: "Todo",
-  required: ["title"],
-  properties: {
-    title: {
-      title: "Title",
-      description: 'Something your special :)',
-      default: "A new task"
-    },
-    done: {
-      type: "boolean",
-      title: "Done?",
-      default: false
-    },
-    tags: {
-      title: 'Tags',
-      description: 'Tags for search',
-      items: { title: 'Tag', type: 'string' }
-    },
-    party: {
-      enum: ['CAT', 'DOG', 'OCTCAT'],
-      default: 'CAT',
-    },
-    user: {
-      title: 'Your Profile',
-      $ref: '#/definitions/user',
-    },
-    array: {
-      title: 'Extra Users',
-      items: { $ref: '#/definitions/user' },
-    },
-  }
-}
-
-console.log(complement(schema))
+import schema from './schema'
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <div className="container">
-          <Form schema={schema} />
+    return <div className="App">
+      <Segment className="AppHeader" inverted vertical>
+        <Container>
+          <h1>Custamizing react-jsonschema-form for Semantic UI ♡</h1>
+        </Container>
+      </Segment>
+      <Segment vertical>
+        <div className="ui container">
+          <Form schema={schema}>
+            <Button primary><Icon name="mail" />Submit</Button>
+            <Button>Cancel</Button>
+          </Form>
         </div>
-      </div>
-    );
+      </Segment>
+      <Segment vertical inverted>
+        <Container>
+          <h2>Powered by:</h2>
+          <ul>
+            <li><a href="https://github.com/mozilla-services/react-jsonschema-form">mozilla-services/react-jsonschema-form</a></li>
+            <li><a href="https://github.com/Semantic-Org/Semantic-UI/tree/1.0">Semantic-Org/Semantic-UI</a></li>
+          </ul>
+          <h3>Author</h3>
+          <a href="https://github.com/asa-taka/custom-react-jsonschema-form">asa-taka/custom-react-jsonschema-form</a>
+        </Container>
+      </Segment>
+    </div>;
   }
 }
 
