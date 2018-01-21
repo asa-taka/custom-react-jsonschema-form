@@ -89,13 +89,13 @@ function ObjectFieldTemplate(props) {
   const { title, description, properties } = props
   const tyeps = Object.keys(props.schema.properties).map(s => s.type)
   return (
-    <React.Fragment>
+    <div className="field-object-props">
       {properties.map((elm, i) => (
-        <React.Fragment className="field-object-prop" key={i}>
+        <React.Fragment key={i}>
           {elm.content}
         </React.Fragment>
       ))}
-    </React.Fragment>
+    </div>
   )
 }
 
