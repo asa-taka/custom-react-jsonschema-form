@@ -6,6 +6,12 @@ fieldset {
   width: 100%;
 }
 
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
 .field-heading {
   margin-bottom: 12px;
 }
@@ -13,19 +19,26 @@ fieldset {
   margin-bottom: 0;
 }
 
-.field-prim {
+.field-object {
   display: flex;
+  flex-flow: wrap;
 }
+
+.field-object > .field-prim {
+  flex: 1 auto;
+  margin: 0 4px;
+}
+
+.field-object > * {
+  flex: 1 100%;
+}
+
+.array-item > .field-prim > label {
+  display: none;
+}
+
 .field-prim > .field-value {
   flex-grow: 1;
-}
-.field-prim > label {
-  min-width: 120px;
-  margin: 0;
-  margin-right: 12px;
-  font-weight: bold;
-  line-height: 34px;
-  text-align: right;
 }
 
 form select {
@@ -41,10 +54,9 @@ form select {
 .field-comp > :first-child { margin-top: 0; }
 .field-comp > :last-child { margin-bottom: 0; }
 
-i.icon.array-rm-item {
+.ui.button.array-rm-item {
   display: block;
-  margin-left: 12px;
-  margin-top: 4px;
+  margin-left: 8px;
 }
 
 .array-item {

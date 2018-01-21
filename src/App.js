@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Form from './Form'
 import './App.css';
 import complement from './utils/complement'
-import { Button } from 'semantic-ui-react'
+import { Header, Icon, Button, Segment, Dimmer, Loader, Step } from 'semantic-ui-react'
 
 const userSchema = {
   title: 'User',
   description: 'User profile',
   properties: {
     name: {},
-    pass: {　description: 'Your awesom password!'　},
+    pass: { 　description: 'Your awesom password!' 　},
     age: { type: 'number' },
     friends: {
       title: 'Friends',
@@ -18,6 +18,14 @@ const userSchema = {
         $ref: '#/definitions/user',
       },
     }
+  }
+}
+
+const linkSchema = {
+  title: 'Link',
+  properties: {
+    name: {},
+    uri: {},
   }
 }
 
@@ -43,6 +51,11 @@ const schema = {
       description: 'Tags for search',
       items: { title: 'Tag', type: 'string' }
     },
+    links: {
+      title: 'Links',
+      description: 'Your favorite links!',
+      items: linkSchema,
+    },
     party: {
       enum: ['CAT', 'DOG', 'OCTCAT'],
       default: 'CAT',
@@ -58,25 +71,19 @@ const schema = {
   }
 }
 
-console.log(complement(schema))
-
 class App extends Component {
   render() {
     return <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+      <header className="App-header">
+        <h1 className="App-title">Welcome to React</h1>
+      </header>
         <div className="ui container">
           <Form schema={schema}>
-            <Button primary>
-              <i className="icon mail" />Submit
-            </Button>
-            <Button>
-              <i className="icon window close" />Cancel
-            </Button>
+            <Button primary icon="mail">Submit</Button>
+            <Button icon="mail">Cancel</Button>
           </Form>
         </div>
-      </div>;
+    </div>;
   }
 }
 

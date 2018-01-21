@@ -5,6 +5,8 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",
     "clone": "^2.1.1",
+    "json-schema-deref": "^0.4.0",
+    "json-schema-deref-sync": "^0.4.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-jsonschema-form": "^1.0.0",

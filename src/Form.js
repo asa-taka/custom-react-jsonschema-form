@@ -34,10 +34,8 @@ function PrimitiveFieldTemplate(props) {
         {props.label}
         {props.required && "*"}
       </label>
-      <div className="field-value">
-        <div className="ui input fluid">{props.children}</div>
-        <FieldHelper {...props} />
-      </div>
+      <div className="field-value ui input fluid">{props.children}</div>
+      <FieldHelper {...props} />
     </div>
   )
 }
@@ -69,12 +67,9 @@ function ArrayFieldTemplate(props) {
       {props.items.map(elm => (
         <div className="array-item">
           {elm.children}
-          <Icon
+          <Button
             className="array-rm-item"
-            name="delete"
-            circular
-            inverted
-            color="red"
+            icon="delete"
             onClick={elm.onDropIndexClick(elm.index)}
           />
         </div>
@@ -90,12 +85,13 @@ function ArrayFieldTemplate(props) {
 
 function ObjectFieldTemplate(props) {
   const { title, description, properties } = props
+  const tyeps = Object.keys(props.schema.properties).map(s => s.type)
   return (
     <React.Fragment>
       {properties.map((elm, i) => (
-        <div className="field-object-prop" key={i}>
+        <React.Fragment className="field-object-prop" key={i}>
           {elm.content}
-        </div>
+        </React.Fragment>
       ))}
     </React.Fragment>
   )
@@ -110,5 +106,5 @@ export default withProps(({ schema }) => ({
   FieldTemplate,
   ArrayFieldTemplate,
   ObjectFieldTemplate,
-  onSubmit
+  onSubmit,
 }))(Form)
