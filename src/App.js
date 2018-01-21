@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Form from './Form'
 import './App.css';
-import complement from './utils/complement'
-import { Header, Icon, Button, Segment, Dimmer, Loader, Step } from 'semantic-ui-react'
+import { Icon, Button,  } from 'semantic-ui-react'
 
 import schema from './schema'
 
@@ -14,8 +13,8 @@ class App extends Component {
       </header>
         <div className="ui container">
           <Form schema={schema}>
-            <Button primary icon="mail">Submit</Button>
-            <Button icon="mail">Cancel</Button>
+            <Button primary><Icon name="mail" />Submit</Button>
+            <Button>Cancel</Button>
           </Form>
         </div>
     </div>;

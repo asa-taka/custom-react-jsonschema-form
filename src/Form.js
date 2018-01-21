@@ -45,11 +45,9 @@ function PrimitiveFieldTemplate(props) {
 function FieldHelper(props) {
   const {
     rawDescription,
-    description,
     rawErrors,
     errors,
     rawHelp,
-    help
   } = props
   if (!rawDescription && !rawErrors && !rawHelp) return null
   return (
@@ -62,11 +60,11 @@ function FieldHelper(props) {
 }
 
 function ArrayFieldTemplate(props) {
-  const { title, items, schema } = props
+  const { items, schema } = props
   const itemName = schema.items.title
   return (
     <React.Fragment>
-      {props.items.map(elm => (
+      {items.map(elm => (
         <div className="array-item">
           {elm.children}
           <Button
@@ -86,11 +84,9 @@ function ArrayFieldTemplate(props) {
 }
 
 function ObjectFieldTemplate(props) {
-  const { title, description, properties } = props
-  const tyeps = Object.keys(props.schema.properties).map(s => s.type)
   return (
     <div className="field-object-props">
-      {properties.map((elm, i) => (
+      {props.properties.map((elm, i) => (
         <React.Fragment key={i}>
           {elm.content}
         </React.Fragment>
