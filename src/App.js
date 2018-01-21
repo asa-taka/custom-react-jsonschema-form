@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link, withRouter } from 'react-router-dom'
 import Form from './Form'
 import './App.css'
 import {
@@ -10,50 +11,85 @@ import {
   Header
 } from 'semantic-ui-react'
 
-import schema from './schema'
+import userProfileSchema from './schemas/userProfile'
+
+const examples = [
+  { path: '/ex1', title: 'User Profile', schema: userProfileSchema },
+  { path: '/ex2', title: '...and more', schema: { type: 'string', title: 'some-value...'} },
+]
+
+const AppMenu = withRouter(({ location }) => (
+  <Menu inverted pointing secondary>
+    {examples.map(ex => (
+      <Menu.Item
+        key={ex.path}
+        as={Link}
+        to={ex.path}
+        active={location.pathname === ex.path}>
+        {ex.title}
+      </Menu.Item>
+    ))}
+  </Menu>
+))
+
+const AppRoutes = () => (
+  <Switch>
+    {examples.map(ex => (
+      <Route
+        exact
+        key={ex.path}
+        path={ex.path}
+        render={() => (
+          <Form schema={ex.schema}>
+            <Button positive>
+              <Icon name="mail" />Submit
+            </Button>
+            <Button>Cancel</Button>
+          </Form>
+        )}
+      />
+  ))}
+ </Switch>
+)
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <Segment className="AppHeader" inverted vertical>
-          <Container>
-            <h1>Custamizing react-jsonschema-form for Semantic UI ♡</h1>
-          </Container>
-        </Segment>
-        <Segment vertical>
-          <div className="ui container">
-            <Form schema={schema}>
-              <Button positive>
-                <Icon name="mail" />Submit
-              </Button>
-              <Button>Cancel</Button>
-            </Form>
-          </div>
-        </Segment>
-        <Segment vertical inverted>
-          <Container>
-            <h2>Powered by:</h2>
-            <ul>
-              <li>
-                <a href="https://github.com/mozilla-services/react-jsonschema-form">
-                  mozilla-services/react-jsonschema-form
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/Semantic-Org/Semantic-UI/tree/1.0">
-                  Semantic-Org/Semantic-UI
-                </a>
-              </li>
-            </ul>
-            <h3>Author</h3>
-            <a href="https://github.com/asa-taka/custom-react-jsonschema-form">
-              asa-taka/custom-react-jsonschema-form
-            </a>
-          </Container>
-        </Segment>
-      </div>
-    )
+    return <Router>
+        <div className="App">
+          <Segment className="AppHeader" inverted vertical>
+            <Container>
+              <h1>Custamizing react-jsonschema-form for Semantic UI ♡</h1>
+              <AppMenu />
+            </Container>
+          </Segment>
+          <Segment vertical>
+            <div className="ui container">
+              <AppRoutes />
+            </div>
+          </Segment>
+          <Segment vertical inverted>
+            <Container>
+              <h2>Powered by:</h2>
+              <ul>
+                <li>
+                  <a href="https://github.com/mozilla-services/react-jsonschema-form">
+                    mozilla-services/react-jsonschema-form
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/Semantic-Org/Semantic-UI/tree/1.0">
+                    Semantic-Org/Semantic-UI
+                  </a>
+                </li>
+              </ul>
+              <h3>Author</h3>
+              <a href="https://github.com/asa-taka/custom-react-jsonschema-form">
+                asa-taka/custom-react-jsonschema-form
+              </a>
+            </Container>
+          </Segment>
+        </div>
+      </Router>
   }
 }
 

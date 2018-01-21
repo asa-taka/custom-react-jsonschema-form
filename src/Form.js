@@ -3,7 +3,7 @@ import Form from 'react-jsonschema-form'
 import './Form.css'
 import complement from './utils/complement'
 import { Button, Icon, Message, Label } from 'semantic-ui-react'
-import { withProps, lifecycle } from 'recompose'
+import { withProps } from 'recompose'
 
 const composedTypes = ['object', 'array']
 const distinctComposedType = type => composedTypes.includes(type)
@@ -50,7 +50,7 @@ function FieldErrors({ errors }) {
 }
 
 function FieldHelper(props) {
-  const { rawDescription, rawErrors, errors } = props
+  const { rawDescription, rawErrors } = props
   if (!rawDescription && !rawErrors) return null
   return (
     <div className="field-help">
