@@ -2,7 +2,7 @@ import React from 'react'
 import Form from 'react-jsonschema-form'
 import './Form.css'
 import complement from './utils/complement'
-import { Button, Icon, Message } from 'semantic-ui-react'
+import { Button, Icon, Message, Label } from 'semantic-ui-react'
 import { withProps, lifecycle } from 'recompose'
 
 const composedTypes = ['object', 'array']
@@ -42,13 +42,20 @@ function PrimitiveFieldTemplate(props) {
   )
 }
 
+function FieldErrors({ errors }) {
+  if (!errors || !errors.length) return null
+  return <div className="field-errors">
+    {errors.map((err, i) => <Label key={i} color='red' pointing>{err}</Label>)}
+  </div>
+}
+
 function FieldHelper(props) {
   const { rawDescription, rawErrors, errors } = props
   if (!rawDescription && !rawErrors) return null
   return (
     <div className="field-help">
       {rawDescription && <div>{rawDescription}</div>}
-      {rawErrors && errors}
+      <FieldErrors errors={rawErrors} />
     </div>
   )
 }
@@ -88,7 +95,7 @@ function ObjectFieldTemplate(props) {
 }
 
 function ErrorList({ errors }) {
-  return <Message negative header="Errors" list={errors.map(e => e.stack)} />
+  return <Message negative header="Errors" icon="remove circle" list={errors.map(e => e.stack)} />
 }
 
 const onSubmit = event => {
