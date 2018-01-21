@@ -24,7 +24,7 @@ class App extends Component {
         <Segment vertical>
           <div className="ui container">
             <Form schema={schema}>
-              <Button primary>
+              <Button positive>
                 <Icon name="mail" />Submit
               </Button>
               <Button>Cancel</Button>
