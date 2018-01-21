@@ -51,12 +51,21 @@
   margin: 0 -6px;
 }
 .field-object-props > * {
-  flex: 1 100%;
-  margin: 6px;
-}
-.field-object-props > .field-prim {
   flex: 1 auto;
+  margin: 6px;
   min-width: 200px;
+}
+.field-object-props > .field-array,
+.field-object-props > .field-object {
+  flex: 1 100%;
+}
+
+.field-boolean > label {
+  display: none;
+}
+.field-object-props > .field-boolean {
+  order: 100;
+  min-width: auto;
 }
 
 /* Array Field
@@ -72,7 +81,7 @@
   flex-grow: 1;
 }
 
-.array-item > .field-prim > label {
+.array-item > .field > label {
   display: none;
 }
 
@@ -100,19 +109,6 @@
 .field-help {
   margin-top : 4px;
   color: #999;
-}
-
-ul.error-detail {
-  padding: 0;
-  margin: 0;
-}
-
-ul.error-detail > li {
-  display: inline-block;
-  background: #fcc;
-  padding: 2px 12px;
-  border-radius: 4px;
-  color: firebrick;
 }
 
 /* WORKAROUND: many empty <div> elements are in the Form! */

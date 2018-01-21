@@ -18,7 +18,7 @@ function FieldTemplate(props) {
 function ComposedFieldTemplate(props) {
   const { classNames } = props
   return (
-    <div className={classNames + ' field-comp'}>
+    <div className={classNames}>
       <div className="field-heading">
         <h3>{props.label}</h3>
         <FieldHelper {...props} />
@@ -31,12 +31,12 @@ function ComposedFieldTemplate(props) {
 function PrimitiveFieldTemplate(props) {
   const { classNames } = props
   return (
-    <div className={classNames + ' field-prim'}>
+    <div className={classNames}>
       <label>
         {props.label}
         {props.required && '*'}
       </label>
-      <div className="field-value ui input fluid">{props.children}</div>
+      <div className="ui input fluid">{props.children}</div>
       <FieldHelper {...props} />
     </div>
   )
