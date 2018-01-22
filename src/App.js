@@ -23,7 +23,7 @@ const examples = Object.entries(settings).map(([key, setting]) => ({
 }))
 
 const AppMenu = withRouter(({ location }) => (
-  <Menu inverted pointing secondary>
+  <Menu inverted secondary stackable>
     <Menu.Item as={Link} to="/">About</Menu.Item>
     {examples.map(ex => (
       <Menu.Item
