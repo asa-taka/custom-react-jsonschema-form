@@ -1,15 +1,11 @@
 import React from 'react'
-import Form from 'react-jsonschema-form'
-import './Form.css'
-import complement from './utils/complement'
 import { Button, Icon, Message, Label } from 'semantic-ui-react'
-import { withProps } from 'recompose'
 import classNames from 'classnames'
 
 const composedTypes = ['object', 'array']
 const distinctComposedType = type => composedTypes.includes(type)
 
-function FieldTemplate(props) {
+export function FieldTemplate(props) {
   const Template = distinctComposedType(props.schema.type)
     ? ComposedFieldTemplate
     : PrimitiveFieldTemplate
@@ -36,7 +32,6 @@ function PrimitiveFieldTemplate(props) {
     props.classNames,
     widget && `widget-${widget}`
   )
-  console.log(className)
   return (
     <div className={className}>
       <label>
@@ -67,7 +62,7 @@ function FieldHelper(props) {
   )
 }
 
-function ArrayFieldTemplate(props) {
+export function ArrayFieldTemplate(props) {
   const { items, schema } = props
   const itemName = schema.items.title
   return (
@@ -91,7 +86,7 @@ function ArrayFieldTemplate(props) {
   )
 }
 
-function ObjectFieldTemplate(props) {
+export function ObjectFieldTemplate(props) {
   return (
     <div className="field-object-props">
       {props.properties.map((elm, i) => (
@@ -101,19 +96,6 @@ function ObjectFieldTemplate(props) {
   )
 }
 
-function ErrorList({ errors }) {
+export function ErrorList({ errors }) {
   return <Message negative header="Errors" icon="remove circle" list={errors.map(e => e.stack)} />
 }
-
-const onSubmit = event => {
-  return console.warn('Form.onSubmit is not defined', event.formData)
-}
-
-export default withProps(({ schema }) => ({
-  schema: complement(schema),
-  FieldTemplate,
-  ArrayFieldTemplate,
-  ObjectFieldTemplate,
-  ErrorList,
-  onSubmit
-}))(Form)

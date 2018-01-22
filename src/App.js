@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
-import { HashRouter as Router, Switch, Route, Link, withRouter } from 'react-router-dom'
-import Form from './Form'
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Link,
+  withRouter
+} from 'react-router-dom'
+import Form from './components/Form'
+import ModalForm from './components/ModalForm'
 import './App.css'
 import {
   Icon,
@@ -10,6 +17,7 @@ import {
   Menu,
   Header,
   Message,
+  Divider
 } from 'semantic-ui-react'
 import complement from './utils/complement'
 import Markdown from 'react-markdown'
@@ -19,12 +27,14 @@ import * as settings from './schemas/index'
 const examples = Object.entries(settings).map(([key, setting]) => ({
   path: '/' + key,
   title: setting.props.schema.title,
-  setting,
+  setting
 }))
 
 const AppMenu = withRouter(({ location }) => (
   <Menu inverted secondary stackable>
-    <Menu.Item as={Link} to="/">About</Menu.Item>
+    <Menu.Item as={Link} to="/">
+      About
+    </Menu.Item>
     {examples.map(ex => (
       <Menu.Item
         key={ex.path}
@@ -43,30 +53,30 @@ const renderForm = ({ props, description }) => (
       <Markdown source={description} />
     </Message>
     <Form {...props}>
-      <Button positive>
-        <Icon name="mail" />Submit
-      </Button>
-      <Button>Cancel</Button>
+      <Button content="Cancel" icon="cancel" />
     </Form>
+    <Divider content="or" horizontal />
+    <ModalForm {...props} />
   </React.Fragment>
 )
 
-const AppAbout = () => <article>
-  <h2>Welcome to my personal practice page :)</h2>
-  <p>This is my personal project to practice to learn
-    both of react-jsonschema-form and (really cute) Semantic UI.
-    </p> 
+const AppAbout = () => (
+  <article>
+    <h2>Welcome to my personal practice page :)</h2>
     <p>
-      react-jsonschema-form generate
+      This is my personal project to practice to learn both of
+      react-jsonschema-form and (really cute) Semantic UI.
     </p>
+    <p>react-jsonschema-form generate</p>
     <Message>
-      {renderForm(settings['todo'])}
+      <Form {...settings['todo'].props} />
     </Message>
     ...from JSON Schema like below
     <pre>
       {JSON.stringify(complement(settings['todo'].props.schema), null, 2)}
     </pre>
-</article>
+  </article>
+)
 
 const AppRoutes = () => (
   <Switch>
@@ -78,13 +88,14 @@ const AppRoutes = () => (
         path={ex.path}
         render={() => renderForm(ex.setting)}
       />
-  ))}
- </Switch>
+    ))}
+  </Switch>
 )
 
 class App extends Component {
   render() {
-    return <Router>
+    return (
+      <Router>
         <div className="App">
           <Segment className="AppHeader" inverted vertical>
             <Container>
@@ -120,6 +131,7 @@ class App extends Component {
           </Segment>
         </div>
       </Router>
+    )
   }
 }
 
