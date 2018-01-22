@@ -1,3 +1,7 @@
+const description = `
+Practice Concepts: Complex Schema
+`
+
 const userSchema = {
   title: 'User',
   description: 'User profile',
@@ -59,4 +63,7 @@ const schema = {
   }
 }
 
-export default { schema }
+export default {
+  description,
+  props: { schema }
+}

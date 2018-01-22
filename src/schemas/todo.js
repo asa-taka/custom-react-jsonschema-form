@@ -1,3 +1,7 @@
+const description = `
+Practice Concepts: Simple Schema
+`
+
 const schema = {
   title: 'ToDo',
   properties: {
@@ -6,4 +10,7 @@ const schema = {
   }
 }
 
-export default { schema }
+export default {
+  description,
+  props: { schema }
+}
