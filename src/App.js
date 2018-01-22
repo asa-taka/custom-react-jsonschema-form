@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, withRouter } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route, Link, withRouter } from 'react-router-dom'
 import Form from './Form'
 import './App.css'
 import {
