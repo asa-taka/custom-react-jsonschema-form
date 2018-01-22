@@ -1,3 +1,10 @@
+const description = `
+Practice Concepts:
+
+- 'ui:widget': 'textarea'
+- string arrays in listed objects
+`
+
 const favoritThings = {
   title: "Favorit Things Set",
   properties: {
@@ -39,4 +46,7 @@ const uiSchema = {
   }
 }
 
-export default { schema, uiSchema }
+export default {
+  description,
+  props: { schema, uiSchema },
+}

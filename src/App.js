@@ -12,13 +12,14 @@ import {
   Message,
 } from 'semantic-ui-react'
 import complement from './utils/complement'
+import Markdown from 'react-markdown'
 
 import * as settings from './schemas/index'
 
-const examples = Object.entries(settings).map(([key, props]) => ({
+const examples = Object.entries(settings).map(([key, setting]) => ({
   path: '/' + key,
-  title: props.schema.title,
-  props,
+  title: setting.props.schema.title,
+  setting,
 }))
 
 const AppMenu = withRouter(({ location }) => (
@@ -36,15 +37,18 @@ const AppMenu = withRouter(({ location }) => (
   </Menu>
 ))
 
-const renderForm = props => (
-  (
+const renderForm = ({ props, description }) => (
+  <React.Fragment>
+    <Message>
+      <Markdown source={description} />
+    </Message>
     <Form {...props}>
       <Button positive>
         <Icon name="mail" />Submit
       </Button>
       <Button>Cancel</Button>
     </Form>
-  )
+  </React.Fragment>
 )
 
 const AppAbout = () => <article>
@@ -60,7 +64,7 @@ const AppAbout = () => <article>
     </Message>
     ...from JSON Schema like below
     <pre>
-      {JSON.stringify(complement(settings['todo'].schema), null, 2)}
+      {JSON.stringify(complement(settings['todo'].props.schema), null, 2)}
     </pre>
 </article>
 
@@ -72,7 +76,7 @@ const AppRoutes = () => (
         exact
         key={ex.path}
         path={ex.path}
-        render={() => renderForm(ex.props)}
+        render={() => renderForm(ex.setting)}
       />
   ))}
  </Switch>
