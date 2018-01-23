@@ -1,6 +1,4 @@
-const description = `
-Practice Concepts:
-
+const concept = `
 - 'ui:widget': 'textarea'
 - string arrays in listed objects
 `
@@ -47,6 +45,6 @@ const uiSchema = {
 }
 
 export default {
-  description,
+  concept,
   props: { schema, uiSchema },
 }

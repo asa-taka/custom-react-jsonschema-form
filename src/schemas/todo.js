@@ -1,5 +1,5 @@
-const description = `
-Practice Concepts: Simple Schema
+const concept = `
+Simple Schema
 `
 
 const schema = {
@@ -11,6 +11,6 @@ const schema = {
 }
 
 export default {
-  description,
-  props: { schema }
+  concept,
+  props: { schema },
 }

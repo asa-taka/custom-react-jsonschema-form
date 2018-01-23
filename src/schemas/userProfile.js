@@ -1,5 +1,5 @@
-const description = `
-Practice Concepts: Complex Schema
+const concept = `
+Complex Schema
 `
 
 const userSchema = {
@@ -64,6 +64,6 @@ const schema = {
 }
 
 export default {
-  description,
-  props: { schema }
+  concept,
+  props: { schema },
 }

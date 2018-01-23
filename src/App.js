@@ -47,11 +47,13 @@ const AppMenu = withRouter(({ location }) => (
   </Menu>
 ))
 
-const renderForm = ({ props, description }) => (
+const renderForm = ({ props, concept }) => (
   <React.Fragment>
-    <Message>
-      <Markdown source={description} />
-    </Message>
+    <Message
+      icon="idea"
+      header="Practice Concept"
+      content={<Markdown source={concept} />}
+    />
     <Form {...props}>
       <Button content="Cancel" icon="cancel" />
     </Form>
@@ -68,9 +70,9 @@ const AppAbout = () => (
       react-jsonschema-form and (really cute) Semantic UI.
     </p>
     <p>react-jsonschema-form generate</p>
-    <Message>
+    <Segment>
       <Form {...settings['todo'].props} />
-    </Message>
+    </Segment>
     ...from JSON Schema like below
     <pre>
       {JSON.stringify(complement(settings['todo'].props.schema), null, 2)}
